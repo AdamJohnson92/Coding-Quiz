@@ -7,7 +7,9 @@ var choiceTwoBtnEl = document.querySelector("#choice-two");
 var choiceThreeBtnEl = document.querySelector("#choice-three");
 var choiceFourBtnEl = document.querySelector("#choice-four");
 var feedbackEl = document.querySelector("#feedback")
-var secondsLeft = 3;
+var scoreEl = document.querySelector("#score")
+var scoreCounter = 0;
+var secondsLeft = 60;
 
 var questionOne = {
   question: "Which coding language is primarily responsible for styling a webpage?",
@@ -20,6 +22,7 @@ var questionOne = {
 function playGame(){
   setTime();
   generateQuestion()
+  
 }
 
 function setTime() {
@@ -36,6 +39,7 @@ function setTime() {
         choiceTwoBtnEl.style.display = "none";
         choiceThreeBtnEl.style.display = "none";
         choiceFourBtnEl.style.display = "none";
+        feedbackEl.style.display = "none";
       }
     }, 1000);
   }
@@ -43,24 +47,31 @@ function setTime() {
   function generateQuestion(){
     questionEl.textContent = questionOne.question;  
     choiceOneBtnEl.textContent = questionOne.correct;
+    choiceOneBtnEl.style.display = "block";
     choiceTwoBtnEl.textContent = questionOne.incorrectOne;
+    choiceTwoBtnEl.style.display = "block";
     choiceThreeBtnEl.textContent = questionOne.incorrectTwo;
+    choiceThreeBtnEl.style.display = "block";
     choiceFourBtnEl.textContent = questionOne.incorrectThree;
+    choiceFourBtnEl.style.display = "block";
     /*for (let i = 1; i < choiceBtnEl.length; i++) {
         var index = Math.floor(Math.random * choiceBtnEl.length)
         choiceBtnEl.textContent = questionOne[index]
       }*/
+      
     }
 
+  
   function answerSelection(event){
-      var userAnswer = event.target;
-      console.log(userAnswer)
-      if (userAnswer === questionOne.correct) {
-    score++;
-    feedbackEl.textContent = "Correct!"
+    var userAnswer = event.target;
+      if (userAnswer === choiceOneBtnEl) {
+        scoreCounter++;
+        scoreEl.textContent = scoreCounter;
+        console.log(scoreCounter)
+        feedbackEl.textContent = "Correct!"
     } else { 
     feedbackEl.textContent = "Incorrect! -10 Seconds"
-    secondsLeft -10;
+    secondsLeft -10000;
     }
   }
 

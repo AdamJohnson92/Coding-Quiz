@@ -1,4 +1,5 @@
 var beginBtn = document.querySelector("#begin-button");
+var closeScoreboardBtn = document.querySelector("#close-scoreboard-button")
 var timerEl = document.querySelector("#timer");
 var questionEl = document.querySelector("#game-question");
 var choiceBtnArray = document.querySelectorAll(".choice-button")
@@ -12,9 +13,12 @@ var submitForm = document.querySelector("#score-submission")
 var finalScore = document.querySelector("#score-auto-fill")
 var submitBtn = document.querySelector("#submit-button")
 var userInitials = document.querySelector("#user-initials")
+var highScores = document.querySelector("#high-scores")
+var scoreboardInitials = document.querySelector("#scoreboardInitials")
+var scoreboardScore = document.querySelector("#scoreboardScore")
 
 var scoreCounter = 0;
-var secondsLeft = 5;
+var secondsLeft = 60;
 
 var question1 = {
   question: "Which coding language is primarily responsible for styling a webpage?",
@@ -27,9 +31,10 @@ var question1 = {
 //var questionArray = [question1, question2]
 
 function playGame(){
+  
   setTime();
   generateQuestion()
-  return scoreCounter;
+
 }
 
 //The Object that users will submit including their initials and their score.
@@ -87,16 +92,34 @@ function setTime() {
   for (let i = 0; i < choiceBtnArray.length; i++) {
       choiceBtnArray[i].addEventListener("click",answerSelection)
     }
-  beginBtn.addEventListener("click", playGame);
+  beginBtn.addEventListener("click", playGame)
+  
+  closeScoreboardBtn.addEventListener("click", function(){
+    highScores.style.display = "none";
+    location.reload();
+  });
 
 
-submitBtn.addEventListener("click", function(){
+
+submitBtn.addEventListener("click", function(event){
+  event.preventDefault();
   var userScoreSubmission = {
-  initials: userInitials.value,
-  score: scoreCounter,
+    initials: userInitials.value,
+    score: scoreCounter,
   };
   
   localStorage.setItem("userScoreSubmission", JSON.stringify(userScoreSubmission))
+  submitForm.style.display = "none";
+  highScores.style.display = "flex";
 })
 
+function renderScoreboard(){
+  var scoreboardRow = JSON.parse(localStorage.getItem("userScoreSubmission"))
+  if (scoreboardRow !== null){
+    scoreboardInitials.textContent = userScoreSubmission.initials;
+    scoreboardScore.textContent = userScoreSubmission.score;
+  }
+  
+
+}
   

@@ -11,11 +11,10 @@ var scoreEl = document.querySelector("#score");
 var submitForm = document.querySelector("#score-submission")
 var finalScore = document.querySelector("#score-auto-fill")
 var submitBtn = document.querySelector("#submit-button")
+var userInitials = document.querySelector("#user-initials")
+
 var scoreCounter = 0;
 var secondsLeft = 5;
-
-
-//var questionArray = [question1, question2]
 
 var question1 = {
   question: "Which coding language is primarily responsible for styling a webpage?",
@@ -25,7 +24,7 @@ var question1 = {
   incorrectThree: "Python",
 } 
 
-
+//var questionArray = [question1, question2]
 
 function playGame(){
   setTime();
@@ -33,6 +32,11 @@ function playGame(){
   return scoreCounter;
 }
 
+//The Object that users will submit including their initials and their score.
+var userScoreSubmission = {
+  initials: userInitials.value,
+  score: finalScore.value,
+  };
 
 function setTime() {
     var timerInterval = setInterval(function() {
@@ -44,7 +48,6 @@ function setTime() {
         clearInterval(timerInterval); 
         submitForm.style.display = "flex";
         finalScore.textContent = scoreCounter;
-        return scoreCounter;
       }
     }, 1000);
   }
@@ -85,4 +88,15 @@ function setTime() {
       choiceBtnArray[i].addEventListener("click",answerSelection)
     }
   beginBtn.addEventListener("click", playGame);
+
+
+submitBtn.addEventListener("click", function(){
+  var userScoreSubmission = {
+  initials: userInitials.value,
+  score: scoreCounter,
+  };
+  
+  localStorage.setItem("userScoreSubmission", JSON.stringify(userScoreSubmission))
+})
+
   

@@ -70,18 +70,30 @@ h3{
     display: none;
 }
 
-#score-submission{
+.scoreboard{
     position: fixed;
     left: 6.25%;
     top: 6.25%;
     width: 75%;
     height: 50%;
     text-align: center;
-    background-color: grey;
+    background-color: white;
     padding: 6.25%;
     border: 5px solid black;
     border-radius: 20px;
     display:none;
     flex-direction: column;
     justify-content: center;
+}
+
+#high-scores{
+    display: flex;
+}
+
+tr{
+    border: 5px solid black;
+}
+th, td{
+    border: 5px solid black; 
+    margin: 0;
 }

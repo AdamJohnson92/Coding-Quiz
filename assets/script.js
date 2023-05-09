@@ -6,12 +6,15 @@ var choiceOneBtnEl = document.querySelector("#choice-one");
 var choiceTwoBtnEl = document.querySelector("#choice-two");
 var choiceThreeBtnEl = document.querySelector("#choice-three");
 var choiceFourBtnEl = document.querySelector("#choice-four");
-var feedbackEl = document.querySelector("#feedback")
-var scoreEl = document.querySelector("#score")
+var feedbackEl = document.querySelector("#feedback");
+var scoreEl = document.querySelector("#score");
 var scoreCounter = 0;
 var secondsLeft = 60;
+var submitBtn = document.querySelector("#submit=button")
 
-var questionOne = {
+//var questionArray = [question1, question2]
+
+var question1 = {
   question: "Which coding language is primarily responsible for styling a webpage?",
   correct: "CSS",
   incorrectOne: "HTML",
@@ -19,11 +22,14 @@ var questionOne = {
   incorrectThree: "Python",
 } 
 
+
+
 function playGame(){
   setTime();
   generateQuestion()
-  
+  return scoreCounter;
 }
+
 
 function setTime() {
     var timerInterval = setInterval(function() {
@@ -31,37 +37,36 @@ function setTime() {
       if (secondsLeft !== 1) {timerEl.textContent = secondsLeft + " seconds left"
     } else {timerEl.textContent = secondsLeft + " second left"} 
   
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        questionEl.textContent = "Game Over"; 
-        questionEl.style.fontSize = "100px"; 
+      if(secondsLeft <= 0) {
+        clearInterval(timerInterval); 
         choiceOneBtnEl.style.display = "none";
         choiceTwoBtnEl.style.display = "none";
         choiceThreeBtnEl.style.display = "none";
         choiceFourBtnEl.style.display = "none";
         feedbackEl.style.display = "none";
+        return scoreCounter;
       }
     }, 1000);
   }
 
   function generateQuestion(){
-    questionEl.textContent = questionOne.question;  
-    choiceOneBtnEl.textContent = questionOne.correct;
+    questionEl.textContent = question1.question;  
+    choiceOneBtnEl.textContent = question1.correct;
     choiceOneBtnEl.style.display = "block";
-    choiceTwoBtnEl.textContent = questionOne.incorrectOne;
+    choiceTwoBtnEl.textContent = question1.incorrectOne;
     choiceTwoBtnEl.style.display = "block";
-    choiceThreeBtnEl.textContent = questionOne.incorrectTwo;
+    choiceThreeBtnEl.textContent = question1.incorrectTwo;
     choiceThreeBtnEl.style.display = "block";
-    choiceFourBtnEl.textContent = questionOne.incorrectThree;
+    choiceFourBtnEl.textContent = question1.incorrectThree;
     choiceFourBtnEl.style.display = "block";
     /*for (let i = 1; i < choiceBtnEl.length; i++) {
         var index = Math.floor(Math.random * choiceBtnEl.length)
-        choiceBtnEl.textContent = questionOne[index]
+        choiceBtnEl.textContent = question1[index]
       }*/
       
     }
 
-  
+  //must fix penalty
   function answerSelection(event){
     var userAnswer = event.target;
       if (userAnswer === choiceOneBtnEl) {
@@ -70,8 +75,9 @@ function setTime() {
         console.log(scoreCounter)
         feedbackEl.textContent = "Correct!"
     } else { 
-    feedbackEl.textContent = "Incorrect! -10 Seconds"
-    secondsLeft -10000;
+    feedbackEl.textContent = "Incorrect! -10 Seconds";
+    secondsLeft.textContent = secondsLeft - 10;
+    secondsLeft = secondsLeft - 10;
     }
   }
 

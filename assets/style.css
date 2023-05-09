@@ -69,3 +69,19 @@ h3{
 .choice-button{
     display: none;
 }
+
+#score-submission{
+    position: fixed;
+    left: 6.25%;
+    top: 6.25%;
+    width: 75%;
+    height: 50%;
+    text-align: center;
+    background-color: grey;
+    padding: 6.25%;
+    border: 5px solid black;
+    border-radius: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}

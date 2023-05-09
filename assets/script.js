@@ -8,9 +8,12 @@ var choiceThreeBtnEl = document.querySelector("#choice-three");
 var choiceFourBtnEl = document.querySelector("#choice-four");
 var feedbackEl = document.querySelector("#feedback");
 var scoreEl = document.querySelector("#score");
+var submitForm = document.querySelector("#score-submission")
+var finalScore = document.querySelector("#score-auto-fill")
+var submitBtn = document.querySelector("#submit-button")
 var scoreCounter = 0;
-var secondsLeft = 60;
-var submitBtn = document.querySelector("#submit=button")
+var secondsLeft = 5;
+
 
 //var questionArray = [question1, question2]
 
@@ -39,11 +42,8 @@ function setTime() {
   
       if(secondsLeft <= 0) {
         clearInterval(timerInterval); 
-        choiceOneBtnEl.style.display = "none";
-        choiceTwoBtnEl.style.display = "none";
-        choiceThreeBtnEl.style.display = "none";
-        choiceFourBtnEl.style.display = "none";
-        feedbackEl.style.display = "none";
+        submitForm.style.display = "flex";
+        finalScore.textContent = scoreCounter;
         return scoreCounter;
       }
     }, 1000);

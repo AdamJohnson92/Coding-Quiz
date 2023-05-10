@@ -29,7 +29,7 @@ main{
     justify-content: center;
     background-color: var(--beige);
     width: 100vw;
-    height: 100vh;
+    height: 815px;
     margin: 0;
     padding: 0;
 }
@@ -50,7 +50,7 @@ main{
 button{
     width: 200px;
     height:75px;
-    margin: 20px;
+    margin: 40px;
     font-size: 20px;
     background-color: rgb(226, 205, 14);
     color: black;
@@ -66,7 +66,7 @@ button{
 
 h2{
     height: 50px;
-    margin:30px;
+    margin: 15px;
 }
 
 .question-section{
@@ -88,7 +88,7 @@ h3{
 
 .choice-button{
     display: none;
-    margin: 10px;
+    margin: 20px;
 }
 
 #submit-button{
@@ -103,10 +103,10 @@ h3{
 
 .scoreboard{
     position: fixed;
-    left: 18.75%;
+    left: 30%;
     top: 12.5%;
-    width: 50vw;
-    height: 50%;
+    width: 25vw;
+    height: 25%;
     text-align: center;
     background-color: grey;
     padding: 6.25%;

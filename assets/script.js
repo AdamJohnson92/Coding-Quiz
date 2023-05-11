@@ -85,6 +85,12 @@ function setTime() {
       if(secondsLeft <= 0) {
         clearInterval(timerInterval); 
         submitForm.style.display = "flex";
+        questionEl.style.display = "none";
+        choiceOneBtnEl.style.display = "none";
+        choiceTwoBtnEl.style.display = "none";
+        choiceThreeBtnEl.style.display = "none";
+        choiceFourBtnEl.style.display = "none";
+        feedbackEl.style.display = "none";
         finalScore.textContent = scoreCounter;
       }
     }, 1000);
@@ -102,7 +108,7 @@ function setTime() {
         loop = false;
       } else if(usedIndex.length >= questionArray.length) {
         loop = false;
-        questionEl.display = "none";
+        questionEl.style.display = "none";
         choiceOneBtnEl.style.display = "none";
         choiceTwoBtnEl.style.display = "none";
         choiceThreeBtnEl.style.display = "none";

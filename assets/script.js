@@ -1,7 +1,6 @@
 //QUERY SELECTORS
 var beginBtn = document.querySelector("#begin-button");
-var viewHighScoresBtn = document.querySelector("#view-high-scores-button")
-var closeScoreboardBtn = document.querySelector("#close-scoreboard-button")
+var closeScoreboardBtn = document.querySelector("#close-scoreboard-button");
 var timerEl = document.querySelector("#timer");
 var questionEl = document.querySelector("#game-question");
 var choiceBtnArray = document.querySelectorAll(".choice-button")
@@ -15,10 +14,12 @@ var submitForm = document.querySelector("#score-submission")
 var finalScore = document.querySelector("#score-auto-fill")
 var submitBtn = document.querySelector("#submit-button")
 var userInitials = document.querySelector("#user-initials")
-var highScores = document.querySelector("#high-scores")
+var recentScore = document.querySelector("#recent-score")
 var scoreboardRow = document.querySelector("#scoreboardRow")
 var scoreboardInitials = document.querySelector("#scoreboardInitials")
 var scoreboardScore = document.querySelector("#scoreboardScore")
+var viewRecentScoreBtn = document.querySelector("#view-recent-score-button")
+var usedIndex = []
 
 //VARIABLES THAT WILL BE AFFECTED BY GAMEPLAY
 var scoreCounter = 0;
@@ -65,6 +66,8 @@ var question4 = {
 //ARRAY OF QUESTION OBJECTS
 var questionArray = [question1, question2, question3, question4]
 
+var indexPrime = 0
+
 //STARTS THE TIMER AND GENERATES THE FIRST QUESTION
 function playGame(){
   
@@ -88,20 +91,36 @@ function setTime() {
   }
 
   //THIS RANDOMLY CHOOSES A QUESTION FROM THE QUESTIONS ARRAY
-  //MUST MAKE IT SO ONCE QUESTION IS USED, IT WON'T COME UP AGAIN
   function generateQuestion(){
-    for (let i = 0; i < questionArray.length; i++) {
-    var indexPrime = Math.floor(Math.random() * questionArray.length)
-    //console.log (questionArray[indexPrime].question)
+    //tutor help
+    var loop = true
+    while (loop) {
+      indexPrime = Math.floor(Math.random() * questionArray.length)
+      if (!usedIndex.includes(indexPrime)) {
+        usedIndex.push(indexPrime)
+        console.log(usedIndex)
+        loop = false;
+      } else if(usedIndex.length >= questionArray.length) {
+        loop = false;
+        questionEl.display = "none";
+        choiceOneBtnEl.style.display = "none";
+        choiceTwoBtnEl.style.display = "none";
+        choiceThreeBtnEl.style.display = "none";
+        choiceFourBtnEl.style.display = "none";
+        secondsLeft = 0;
+      } 
+      }
 
-
-    //RANDOM OPTION GENERATOR
-    var questionAnswers = Object.keys(indexPrime);
-    console.log(questionAnswers)
-    for (let j = 1; j < 4; j++){
-      var index = Math.floor(Math.random() * questionAnswers.length)
-      if(index != 0) console.log(index)
-    }
+  
+    //console.log(answerArray)
+  //}
+    //RANDOM OPTION GENERATOR. NOT WORKING
+    //var questionAnswers = Object.keys(indexPrime);
+    //console.log(questionAnswers)
+    //for (let j = 1; j < 4; j++){
+      //var index = Math.floor(Math.random() * questionAnswers.length)
+      //if(index != 0) console.log(index)
+   // }
     //THIS WILL BE REMOVED ONCE RANDOM OPTION GENERATOR WORKS
     questionEl.textContent = questionArray[indexPrime].question;
     choiceOneBtnEl.textContent = questionArray[indexPrime].correct;
@@ -113,14 +132,13 @@ function setTime() {
     choiceFourBtnEl.textContent = questionArray[indexPrime].incorrectThree;
     choiceFourBtnEl.style.display = "block";
     } 
-    }
+    
 //THIS IS THE USER CLICKING ON WHICH ANSWER THEY CHOOSE AND WHAT THAT CHOICE WILL CAUSE TO HAPPEN NEXT
   function answerSelection(event){
     var userAnswer = event.target;
       if (userAnswer === choiceOneBtnEl) {
         scoreCounter++;
         scoreEl.textContent = scoreCounter;
-        console.log(scoreCounter)
         feedbackEl.textContent = "Correct!"
         generateQuestion();
     } else { 
@@ -136,8 +154,8 @@ function setTime() {
 
 //THIS STARTS THE GAME
 beginBtn.addEventListener("click", playGame)
-viewHighScoresBtn.addEventListener("click", function(){
-  highScores.style.display = "flex"
+viewRecentScoreBtn.addEventListener("click", function(){
+  recentScore.style.display = "flex"
 })
 
 //THIS SUBMITS THE USER'S INITIALS AND SCORE TO LOCAL STORAGE
@@ -150,23 +168,27 @@ submitBtn.addEventListener("click", function(event){
   
   localStorage.setItem("userScoreSubmission", JSON.stringify(userScoreSubmission))
   submitForm.style.display = "none";
-  highScores.style.display = "flex";
+  recentScore.style.display = "flex";
   renderScoreboard()
 })
 
 //THIS PULLS INITIALS AND SCORE FROM LOCAL STORAGE
 function renderScoreboard(){
-    JSON.parse(localStorage.getItem("userScoreSubmission"))
+  //tutor help: gave new value to userScoreSubmission Var  
+  userScoreSubmission = JSON.parse(localStorage.getItem("userScoreSubmission"))
     document.getElementById("scoreboardInitials").innerHTML = userScoreSubmission.initials;
     document.getElementById("scoreboardScore").innerHTML = userScoreSubmission.score;
 }
 //THIS CLOSES THE SCOREBOARD TO REINITIALIZE THE PAGE TO PLAY AGAIN
 closeScoreboardBtn.addEventListener("click", function(){
-  highScores.style.display = "none";
+  recentScore.style.display = "none";
   location.reload();
 });
 
-function init(){
+//PULLS UP MOST RECENT SCORE. 
+//NOT WORKING
+viewRecentScoreBtn.addEventListener("click", function(){
+  recentScore.style.display = "flex";
   renderScoreboard();
-}
-init()
+});
+

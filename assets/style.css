@@ -89,6 +89,7 @@ h3{
 .choice-button{
     display: none;
     margin: 20px;
+    font-size: 16px;
 }
 
 #submit-button{

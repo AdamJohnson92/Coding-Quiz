@@ -63,8 +63,64 @@ var question4 = {
   incorrectThree: "Duck/Duckling",
 }
 
+var question5 = {
+  question: "What does DOM stand for in JavaScript?",
+  correct: "Document Object Model",
+  incorrectOne: "Direct Observation Method",
+  incorrectTwo: "Double Obligation Mode",
+  incorrectThree: "Don't Object to Marinara",
+}
+
+var question6 = {
+  question: "What is the name for a method that will trigger according to a user's action?",
+  correct: "Event Listener",
+  incorrectOne: "Action Mode",
+  incorrectTwo: "Trigger",
+  incorrectThree: "Action Observer",
+}
+
+var question7 = {
+  question: "What method is used to link a JavaScript variable to an HTML element?",
+  correct: "document.querySelector()",
+  incorrectOne: "setInterval()",
+  incorrectTwo: "clearInterval()",
+  incorrectThree: "push()",
+}
+
+var question8 = {
+  question: "What method adds an item to the end of an array",
+  correct: "push()",
+  incorrectOne: "setInterval()",
+  incorrectTwo: "clearInterval()",
+  incorrectThree: "document.querySelector()",
+}
+
+var question9 = {
+  question: "What method must be used in addition to setInterval() to end a timer?",
+  correct: "clearInterval()",
+  incorrectOne: "push()",
+  incorrectTwo: "log()",
+  incorrectThree: "document.querySelector()",
+}
+
+var question9 = {
+  question: "What method must be used in addition to setInterval() to end a timer?",
+  correct: "clearInterval()",
+  incorrectOne: "push()",
+  incorrectTwo: "log()",
+  incorrectThree: "document.querySelector()",
+}
+
+var question10 = {
+  question: "How do you save information from user input to local storage?",
+  correct: "localStorage.setItem()",
+  incorrectOne: "localStorage.getItem()",
+  incorrectTwo: "localStorage.save()",
+  incorrectThree: "localStorage.store()",
+}
+
 //ARRAY OF QUESTION OBJECTS
-var questionArray = [question1, question2, question3, question4]
+var questionArray = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10]
 
 var indexPrime = 0
 
@@ -117,16 +173,6 @@ function setTime() {
       } 
       }
 
-  
-    //console.log(answerArray)
-  //}
-    //RANDOM OPTION GENERATOR. NOT WORKING
-    //var questionAnswers = Object.keys(indexPrime);
-    //console.log(questionAnswers)
-    //for (let j = 1; j < 4; j++){
-      //var index = Math.floor(Math.random() * questionAnswers.length)
-      //if(index != 0) console.log(index)
-   // }
     //THIS WILL BE REMOVED ONCE RANDOM OPTION GENERATOR WORKS
     questionEl.textContent = questionArray[indexPrime].question;
     choiceOneBtnEl.textContent = questionArray[indexPrime].correct;

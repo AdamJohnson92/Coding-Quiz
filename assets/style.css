@@ -107,9 +107,14 @@ h3{
     font-size: 20px;
     background-color: rgb(226, 205, 14);
     color: black;
-
+    border-radius: 10px;
 }
 
+#submit-button:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 2px black;
+    background-color: rgb(248, 225, 17);
+}
 .scoreboard{
     position: fixed;
     left: 30%;
@@ -137,6 +142,10 @@ h3{
 #score-submission{
     justify-content: center;
     align-items: center;
+}
+
+#submit-button:hover{
+
 }
 
 /*#high-scores{

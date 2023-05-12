@@ -84,6 +84,7 @@ h2{
 
 h3{
     margin: 20px;
+    
 }
 
 .choice-button{
@@ -141,4 +142,8 @@ tr{
 th, td{
     border: 5px solid black; 
     margin: 0;
+}
+
+thead{
+    margin-bottom: 100px;
 }
